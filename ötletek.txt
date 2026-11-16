@@ -1,0 +1,7 @@
+html formázó
+
+szöveg bevitele
+<p></p> automatikus beillesztése li, ul, ol, table, img
+css (háttérszín, betűszín, font)
+html deklaráció (opcionális)
+szócsere (m2 => m<sup>2</sup>)

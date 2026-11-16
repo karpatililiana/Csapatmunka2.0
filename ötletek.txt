@@ -5,3 +5,7 @@ szöveg bevitele
 css (háttérszín, betűszín, font)
 html deklaráció (opcionális)
 szócsere (m2 => m<sup>2</sup>)
+
+frontend, backend
+ppt tartalma: tartalomjegyzék, példák, használat (5 slide + 2)
+	képek gyűjtése, link (wordPress) 

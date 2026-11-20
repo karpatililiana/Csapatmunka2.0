@@ -1,13 +1,12 @@
 # Csapatmunka2.0
 *Csoporttagok:* Kárpáti Liliána, Piri Nóra, Tóth Lili Napsugár
 
-## PPT
-
-- Probléma leírás
-- Használat (útmutató)
-- Igények
-- Promo (miért jó ez az alkalmazás)
-- Pálda (hogyan kell használni)
+## PPT (tartalma):
+- Miért készült el ez a program (mi volt a 'probléma')
+- Hogyan kell használni
+- Mik az igényei a programnak
+- Miért jó ez az alkalmazás
+- Példa a használatra
 
 ##  Weboldal készító alkalmazás
 

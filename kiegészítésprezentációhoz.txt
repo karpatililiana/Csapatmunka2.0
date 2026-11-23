@@ -1,0 +1,16 @@
+jó prezentációhoz:
+	- Olvasható szöveg (szín és méret)
+	- 5-10 perc előadás, max 5 perc a kérdésekre
+	- Lényegre való fókusz a beszédnél
+	- 1 slide 1 perc max 2 (ha nagyon muszáj)
+	- Haszontalan képek kihagyása (részletes kódok/ terminálról kép)
+		-> témától függően képelhelyezés, ha képről szól, akkor van a középpontban, azon kívűl kicsibe, szöveget nem eltakaróan legyen
+	- Nem nagy bekezsések, inkább vázlatos leírás, felsorolás nagy betűmérettel
+	- Bevezetés
+	- Nincs szöveggel eltúlozva
+	- Egységes design
+	- Hasonlításos rész (EZ megy nálunk a self promo-ba)
+	- Kiemelt lényeg
+	- Animációk magyarázási sorrendben (olyan slide-on amiben van képmagyarázat)
+	- Ábrák jó használata (fogom használni) 
+	- Slide a továbbfejlesztésről/ hazudni ;D (hozzá kell adni)

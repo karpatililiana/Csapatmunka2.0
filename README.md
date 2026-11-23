@@ -26,4 +26,15 @@
 - 2.gomb kiad három opciót: fájl név megadása, meg lehet tekinteni a létező fájl neveit, kilépés
    - 1-es opció elmenti a megadott fájlnév .html néven
    - 2-es megnyitja az *osszesfajlnev.txt* nevű szöveges fájl
-- 
+
+- Css beállítás opciók a *beallitas.txt* fájlba található
+- 3 opció van html és css beállítások meg a kilépés
+- Az egyes opció ami html néven van ki ad 3 gombot
+   - az egyes gomb html deklarációt hozzáad
+   - kettes bekezdéseket hoz létre a szövegre (<p>, </p>)
+   - hármas szám kiléptett
+- A kettes, css opció  szintúgy 3 gombot ad ki
+   - elöszőr megnézi, hogy létezik e a .css fájl, ha igen abba fog írni
+   - egyes gomb a létező .html fájl elemét formázza
+   - kettes új, saját osztályt (class) hoz létre
+   - hármas kiléptett 

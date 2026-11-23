@@ -10,13 +10,13 @@
 
 ##  Weboldal készító alkalmazás
 
-**Menü gombok:**
+**_Menü gombok:_**
 
 - 1.gomb: Szöveg leírása
 - 2.gomb: Létező fájl módosítása
 - 3.gomb: Kilépés
 
-**Lépések:**
+**_Lépések:_**
 
 1. Bekér egy szöveget
 2. Felsorolja a lehetőségeket
@@ -36,5 +36,8 @@
    - Elöszőr megnézi, hogy létezik e a .css fájl, ha igen abba fog írni
    - Egyes gomb a létező .html fájl elemét formázza
    - Kettes új, saját osztályt (class) hoz létre
+- Ha helytelen adatot ad meg akkor újra bekéri az adott adatot
+- Mindig ellenőrzi hogy létezik e az adott fájl
 > [!NOTE]
 > A hármas gomb kiléptett! 
+- Három txt fájl létezik a program elindítása után: osszesfajlnev.txt, beallitasok.txt és cssbeallopciok.txt

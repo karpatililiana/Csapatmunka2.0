@@ -72,16 +72,32 @@ while (true)
         //kinyeri a jelenleg szerkesztett fájl nevét a beallitasok.txt-ből kinyert szövegből
         string fajlNevBeal1 = beallitasok[2];
         Console.WriteLine("Illeszd be a szöveget (jobb klikk=>paste) (az utolsó bekezdés után hagyj nyomj egy extra entert): ");
+        bool megszakitva = false;
         while (true)
         {
-            string szoveg = Console.ReadLine();
-            if (szoveg == "")
+            Console.WriteLine("Adj meg egy fájlnevet (kiterjesztés nélkül)\nKilépéshez hagyd üresen: ");
+            string fajlNev = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(fajlNev))
             {
+                megszakitva = true;
                 break;
             }
-            Console.WriteLine(szoveg);
-            File.AppendAllText($"{fajlNevBeal1}.html", $"{szoveg}\n");
+            if (!File.Exists($"{fajlNev}.html"))
+            {
+                File.WriteAllText($"{fajlNev}.html", "");
+                File.AppendAllText("osszesfajlnev.txt", $"{fajlNev}.html\n");
+
+                beallitasok[2] = fajlNev;
+                File.WriteAllLines("beallitasok.txt", beallitasok); // Egyszerűbb, mint ciklussal hozzáfűzni
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Ez a fájl már létezik!");
+            }
         }
+
+        if (megszakitva) continue; // Vissza a főmenübe, ha nem adott meg fájlnevet
     }
 
     while (gomb1 == "2" && true)
@@ -97,7 +113,7 @@ while (true)
             Console.Write("Fájl neve: ");
             string fajlNev = Console.ReadLine();
             // nincs meg a fájl
-            if (!File.Exists(fajlNev) || !File.Exists($"{fajlNev}.html"))
+            if (!File.Exists(fajlNev) && !File.Exists($"{fajlNev}.html"))
             {
                 Console.WriteLine("Ilyen fájl nincs. Az összes létező fájl kiírásához válaszd a 2. gombot.");
             }

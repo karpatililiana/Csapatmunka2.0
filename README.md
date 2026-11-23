@@ -31,8 +31,8 @@
 - 3 opció van html és css beállítások meg a kilépés
 - Az egyes opció ami html néven van ki ad 3 gombot
    - az egyes gomb html deklarációt hozzáad
-   - kettes bekezdéseket hoz létre a szövegre (<p>, </p>)
-   - hármas szám kiléptett
+   - kettes bekezdéseket hoz létre a szövegre (p)
+   - hármas szám kiléptet
 - A kettes, css opció  szintúgy 3 gombot ad ki
    - elöszőr megnézi, hogy létezik e a .css fájl, ha igen abba fog írni
    - egyes gomb a létező .html fájl elemét formázza

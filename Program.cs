@@ -8,9 +8,6 @@ System.Text.Encoding.RegisterProvider(
 Console.InputEncoding = System.Text.Encoding.GetEncoding(1250);
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-// adatok változó és az adatok.txt elkészítése
-string fajl = "adatok.txt";
-string[] adatok = new string[100];
 // fájl létezés check
 if (!File.Exists("osszesfajlnev.txt"))
 {
@@ -24,31 +21,37 @@ if (!File.Exists("cssbeallopciok.txt"))
 {
     File.WriteAllText("cssbeallopciok.txt", "beállítás neve;beállítás parancs;paraméter1;paraméter2;paraméter3\nSzöveg mérete;font-size;méret\nSzöveg színe;color;szín\nHáttérszín;background-color;szín");
 }
-// dict létrehozás
-Dictionary<string, string> bent = new();
+
+// menü
 while (true)
 {
+    // beallitasok.txt beolvasása
+    List<string> beallitasok = new();
+    string[] beallitasokSzoveg = File.ReadAllLines("beallitasok.txt");
+    foreach (string i in beallitasokSzoveg)
+    {
+        beallitasok.Add(i);
+        Console.WriteLine(i);
+    }
+    while (beallitasok.Count < 3)
+    {
+        beallitasok.Add("");
+    }
+
     // menü gombok
     Console.WriteLine("1. gomb: szöveg leírása");
     Console.WriteLine("2. gomb: létező fájl módosítása");
     Console.WriteLine("3. gomb: kilépés");
     Console.Write("Kérem adja meg hanyas gomb: ");
     string gomb1 = Console.ReadLine();
-    //beallitasok.txt beolvasása
-    List<string> beallitasok = new();
-    var beallitasokSzoveg = File.ReadAllLines("beallitasok.txt");
-    foreach (string i in beallitasokSzoveg)
-    {
-        beallitasok.Add(i);
-        Console.WriteLine(i);
-    }
+
     if (gomb1 == "1")
     {
+        string fajlNev = "";
         while (true)
         {
             Console.WriteLine("Adj meg egy fájlnevet (kiterjesztés nélkül)\nKilépéshez hagyd üresen: ");
-            string fajlNev = Console.ReadLine();
-            // szöveg eltárolása
+            fajlNev = Console.ReadLine();
             if (fajlNev == "")
             {
                 break;
@@ -56,14 +59,9 @@ while (true)
             if (!File.Exists($"{fajlNev}.html"))
             {
                 File.WriteAllText($"{fajlNev}.html", "");
-                File.AppendAllText($"osszesfajlnev.txt", $"{fajlNev}.html\n");
-                Console.WriteLine(beallitasok.Count());
+                File.AppendAllText("osszesfajlnev.txt", $"{fajlNev}.html\n");
                 beallitasok[2] = fajlNev;
-                File.WriteAllText("beallitasok.txt", "");
-                foreach (string i in beallitasok)
-                {
-                    File.AppendAllText("beallitasok.txt", $"{i}\n");
-                }
+                File.WriteAllLines("beallitasok.txt", beallitasok);
                 break;
             }
             else
@@ -71,157 +69,388 @@ while (true)
                 Console.WriteLine("Ez a fájl már létezik!");
             }
         }
-        //kinyeri a jelenleg szerkesztett fájl nevét a beallitasok.txt-ből kinyert szövegből
-        string fajlNevBeal1 = beallitasok[2];
-        Console.WriteLine("Illeszd be a szöveget (jobb klikk=>paste) (az utolsó bekezdés után hagyj nyomj egy extra entert): ");
-        bool megszakitva = false;
+        // üres fájlnév
+        if (fajlNev == "")
+        {
+            continue;
+        }
+
+        Console.WriteLine("Illeszd be a szöveget (jobb klikk=>paste) (az utolsó bekezdés után nyomj egy extra entert): ");
+        List<string> beirtSorok = new();
         while (true)
         {
             string szoveg1 = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(szoveg1))
             {
-                megszakitva = true;
                 break;
             }
-            else
-            {
-                File.WriteAllText($"{fajlNevBeal1}.html", "");
-                File.AppendAllText("osszesfajlnev.txt", $"{fajlNevBeal1}.html\n");
-                File.WriteAllLines("beallitasok.txt", beallitasok); // Egyszerűbb, mint ciklussal hozzáfűzni
-            }
+            beirtSorok.Add(szoveg1);
         }
-
-        if (megszakitva) continue; // Vissza a főmenübe, ha nem adott meg fájlnevet
+        File.WriteAllLines($"{fajlNev}.html", beirtSorok);
+        Console.WriteLine("A szöveg elmentve!");
     }
-
-    while (gomb1 == "2" && true)
+    // létező fájl módosítása
+    else if (gomb1 == "2")
     {
-        Console.WriteLine("1. gomb: Add meg a fájl nevét");
-        Console.WriteLine("2. gomb: Tekintsd meg a létező fájlneveket");
-        Console.WriteLine("3. gomb: Kilépés");
-        Console.Write("Kérem adja meg hanyas gomb: ");
-        string gomb3 = Console.ReadLine();
-        if (gomb3 == "1")
+        // fájlválasztó menü
+        while (true)
         {
-            // fájlnév alapján keresés
-            Console.Write("Fájl neve: ");
-            string fajlNev = Console.ReadLine();
-            // nincs meg a fájl
-            if (!File.Exists(fajlNev) && !File.Exists($"{fajlNev}.html"))
-            {
-                Console.WriteLine("Ilyen fájl nincs. Az összes létező fájl kiírásához válaszd a 2. gombot.");
-            }
-            // megvan a fájl
-            if (File.Exists(fajlNev))
-            {
-                string textBenneVan = File.ReadAllText(fajlNev);
-                break;
-            }
-            else if (File.Exists($"{fajlNev}.html"))
-            {
-                string textBenneVan = File.ReadAllText($"{fajlNev}.html");
-                break;
-            }
-        }
-        else if (gomb3 == "2")
-        {
-            string[] osszesFajlnevFile = File.ReadAllText("osszesfajlnev.txt").Split();
-            foreach (string s in osszesFajlnevFile)
-            {
-                Console.WriteLine($"{s}\n");
-            }
-        }
-        else if (gomb3 == "3")
-        {
-            break;
-        }
-        else
-        {
-            Console.WriteLine("Invalid gomb");
-        }
-    }
-    //cssbeallitasopciok beolvasasa
-    List<string> cssbeallitasopciok = new();
-    var cssbeallitasopciokSzoveg = File.ReadAllLines("beallitasok.txt");
-    foreach (string i in cssbeallitasopciokSzoveg)
-    {
-        cssbeallitasopciok.Append(i);
-    }
-    //kinyeri a jelenleg szerkesztett fájl nevét a beallitasok.txt-ből kinyert szövegből
-    string fajlNevBeal = beallitasok[2];
-    // kiterjesztés kiválasztás
-    string szoveg = File.ReadAllText($"{fajlNevBeal}.html");
-    string[] szovegList = szoveg.Split("\n");
-    while (true)
-    {
-        Console.WriteLine("1. gomb: html");
-        Console.WriteLine("2. gomb: css");
-        Console.WriteLine("3. gomb: kilépés");
-        Console.Write("Kérem adja meg hanyas gomb: ");
-        string gomb2 = Console.ReadLine();
-        if (gomb2 == "1")
-        {
-            Console.WriteLine("1. gomb: HTML-deklaráció hozzáadása");
-            Console.WriteLine("2. gomb: Bekezdések létrehozása (<p>, </p>)");
-            Console.WriteLine("3. gomb: kilépés");
+            Console.WriteLine("1. gomb: Add meg a fájl nevét");
+            Console.WriteLine("2. gomb: Tekintsd meg a létező fájlneveket");
+            Console.WriteLine("3. gomb: Kilépés");
             Console.Write("Kérem adja meg hanyas gomb: ");
-            string gomb4 = Console.ReadLine();
-            while (true)
+            string gomb3 = Console.ReadLine();
+            if (gomb3 == "1")
             {
-                if (gomb4 == "1")
+                Console.Write("Fájl neve: ");
+                string fajlNev2 = Console.ReadLine();
+                if (fajlNev2.EndsWith(".html"))
                 {
-                    Console.WriteLine("Add meg az oldal címét: ");
-                    string oldalCim=Console.ReadLine();
-                    File.WriteAllText($"{fajlNevBeal}.html", $"<!DOCTYPE html>\n<html lang=\"hu\">\n<head>\n    <meta charset=\"UTF - 8\">\n    <meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n    <link rel=\"stylesheet\" href={fajlNevBeal}.css>\n    <title>{oldalCim}</title>\n</head>\n<body>\n    {szoveg}\n</body>\n</html>\n");
+                    fajlNev2 = fajlNev2.Substring(0, fajlNev2.Length - 5);
                 }
-                if (gomb4 == "2")
+
+                if (!File.Exists($"{fajlNev2}.html"))
                 {
-                    File.WriteAllText($"{fajlNevBeal}.html", "");
-                    foreach (string s in szovegList)
+                    Console.WriteLine("Ilyen fájl nincs. Az összes létező fájl kiírásához válaszd a 2. gombot.");
+                }
+                else
+                {
+                    // ez lesz a jelenleg használt fájl
+                    beallitasok[2] = fajlNev2;
+                    File.WriteAllLines("beallitasok.txt", beallitasok);
+                    string htmlFajl = $"{fajlNev2}.html";
+
+                    // SZERKESZTŐ MENÜ (html / css)
+                    while (true)
                     {
-                        File.AppendAllText($"{fajlNevBeal}.html", $"<p>{s}</p>\n");
+                        Console.WriteLine("1. gomb: html");
+                        Console.WriteLine("2. gomb: css");
+                        Console.WriteLine("3. gomb: kilépés");
+                        Console.Write("Kérem adja meg hanyas gomb: ");
+                        string gomb2 = Console.ReadLine();
+
+                        // HTML MENÜ
+                        if (gomb2 == "1")
+                        {
+                            while (true)
+                            {
+                                Console.WriteLine("1. gomb: HTML-deklaráció hozzáadása");
+                                Console.WriteLine("2. gomb: Bekezdések létrehozása (<p>, </p>)");
+                                Console.WriteLine("3. gomb: kilépés");
+                                Console.Write("Kérem adja meg hanyas gomb: ");
+                                string gomb4 = Console.ReadLine();
+
+                                if (gomb4 == "1")
+                                {
+                                    string tartalom = File.ReadAllText(htmlFajl);
+                                    if (tartalom.Contains("<!DOCTYPE html>"))
+                                    {
+                                        Console.WriteLine("A HTML-deklaráció már létezik!");
+                                    }
+                                    else
+                                    {
+                                        Console.Write("Add meg az oldal címét: ");
+                                        string oldalCim = Console.ReadLine();
+                                        tartalom = tartalom.TrimEnd();
+                                        if (tartalom != "")
+                                        {
+                                            tartalom += "\n";
+                                        }
+                                        File.WriteAllText(htmlFajl, $"<!DOCTYPE html>\n<html lang=\"hu\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <link rel=\"stylesheet\" href=\"{fajlNev2}.css\">\n    <title>{oldalCim}</title>\n</head>\n<body>\n{tartalom}</body>\n</html>\n");
+                                        Console.WriteLine("A HTML-deklaráció elkészült!");
+                                    }
+                                }
+                                else if (gomb4 == "2")
+                                {
+                                    string htmlSzoveg = File.ReadAllText(htmlFajl);
+                                    if (htmlSzoveg.Contains("<p>"))
+                                    {
+                                        Console.WriteLine("A bekezdések már léteznek!");
+                                    }
+                                    else
+                                    {
+                                        // ha van <body>, csak az azon belüli részt alakítjuk át, különben az egész fájlt
+                                        string torzs = htmlSzoveg;
+                                        int kezdet = 0;
+                                        int veg = htmlSzoveg.Length;
+                                        if (htmlSzoveg.Contains("<body>") && htmlSzoveg.Contains("</body>"))
+                                        {
+                                            kezdet = htmlSzoveg.IndexOf("<body>") + 6;
+                                            veg = htmlSzoveg.IndexOf("</body>");
+                                            torzs = htmlSzoveg.Substring(kezdet, veg - kezdet);
+                                        }
+
+                                        string ujTorzs = "";
+                                        foreach (string s in torzs.Split('\n'))
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(s))
+                                            {
+                                                ujTorzs += $"<p>{s.Trim()}</p>\n";
+                                            }
+                                        }
+
+                                        if (ujTorzs == "")
+                                        {
+                                            Console.WriteLine("Nincs szöveg a fájlban, amiből bekezdés készülhetne!");
+                                        }
+                                        else
+                                        {
+                                            string elejeSzoveg = htmlSzoveg.Substring(0, kezdet);
+                                            if (kezdet > 0)
+                                            {
+                                                elejeSzoveg += "\n";
+                                            }
+                                            File.WriteAllText(htmlFajl, elejeSzoveg + ujTorzs + htmlSzoveg.Substring(veg));
+                                            Console.WriteLine("A bekezdések elkészültek!");
+                                        }
+                                    }
+                                }
+                                else if (gomb4 == "3")
+                                {
+                                    break; // vissza a html/css menübe
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid gomb");
+                                }
+                            }
+                        }
+                        // css menü
+                        else if (gomb2 == "2")
+                        {
+                            string aktualis = File.ReadAllText(htmlFajl);
+                            if (!aktualis.Contains("<!DOCTYPE html>"))
+                            {
+                                Console.WriteLine("Előbb hozz létre HTML-deklarációt! (html => 1. gomb)");
+                            }
+                            else if (!aktualis.Contains("<p>"))
+                            {
+                                Console.WriteLine("Előbb hozz létre bekezdéseket! (html => 2. gomb)");
+                            }
+                            else
+                            {
+                                if (!File.Exists($"{fajlNev2}.css"))
+                                {
+                                    File.WriteAllText($"{fajlNev2}.css", "");
+                                }
+
+                                while (true)
+                                {
+                                    Console.WriteLine("1. gomb: Létező HTML elem formázása");
+                                    Console.WriteLine("2. gomb: Új, saját osztály (class) létrehozása");
+                                    Console.WriteLine("3. gomb: kilépés");
+                                    Console.Write("Kérem adja meg hanyas gomb: ");
+                                    string gomb5 = Console.ReadLine();
+
+                                    if (gomb5 == "1" || gomb5 == "2")
+                                    {
+                                        string selector = "";
+                                        string osztalyNev = "";
+                                        if (gomb5 == "1")
+                                        {
+                                            Console.WriteLine("HTML elemek: body (A teljes oldal), p (Bekezdések)");
+                                            Console.Write("Melyik elemet szeretnéd formázni? ");
+                                            selector = Console.ReadLine().Trim();
+                                        }
+                                        else
+                                        {
+                                            Console.Write("Az osztály neve (pl. kiemelt): ");
+                                            osztalyNev = Console.ReadLine().Trim();
+                                            if (osztalyNev != "")
+                                            {
+                                                selector = "." + osztalyNev;
+                                            }
+                                        }
+                                        if (selector == "")
+                                        {
+                                            Console.WriteLine("Nem adtál meg nevet!");
+                                            continue;
+                                        }
+
+                                        // cssbeallopciok.txt
+                                        List<string> cssbeallitasopciok = new();
+                                        string[] cssSorok = File.ReadAllLines("cssbeallopciok.txt");
+                                        for (int k = 1; k < cssSorok.Length; k++)
+                                        {
+                                            if (cssSorok[k].Trim() != "")
+                                            {
+                                                cssbeallitasopciok.Add(cssSorok[k]);
+                                            }
+                                        }
+
+                                        // beállítások megadása
+                                        while (true)
+                                        {
+                                            Console.WriteLine("Milyen beállítást szeretnél megadni?");
+                                            for (int k = 0; k < cssbeallitasopciok.Count; k++)
+                                            {
+                                                string[] sor = cssbeallitasopciok[k].Split(';');
+                                                Console.WriteLine($"{k + 1}. gomb: {sor[0]}");
+                                            }
+                                            Console.WriteLine($"{cssbeallitasopciok.Count + 1}. gomb: Egyéb (saját CSS tulajdonság megadása)");
+                                            Console.WriteLine("0. gomb: kész");
+                                            Console.Write("Kérem adja meg hanyas gomb: ");
+                                            string valasztas = Console.ReadLine();
+
+                                            if (valasztas == "0")
+                                            {
+                                                break;
+                                            }
+
+                                            string tulajdonsag = "";
+                                            string tipp = "érték";
+
+                                            if (valasztas == (cssbeallitasopciok.Count + 1).ToString())
+                                            {
+                                                // egyéb
+                                                Console.Write("Add meg a CSS tulajdonság nevét (pl. text-align): ");
+                                                tulajdonsag = Console.ReadLine().Trim();
+                                                if (tulajdonsag == "")
+                                                {
+                                                    Console.WriteLine("Nem adtál meg tulajdonságot!");
+                                                    continue;
+                                                }
+                                            }
+                                            else if (int.TryParse(valasztas, out int szam) && szam >= 1 && szam <= cssbeallitasopciok.Count)
+                                            {
+                                                // a fájlban szereplő beállítások
+                                                string[] sor = cssbeallitasopciok[szam - 1].Split(';');
+                                                tulajdonsag = sor[1];
+                                                if (sor.Length > 2)
+                                                {
+                                                    tipp = sor[2];
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Invalid gomb");
+                                                continue;
+                                            }
+
+                                            Console.Write($"Add meg az értéket ({tipp}): ");
+                                            string ertek = Console.ReadLine().Trim();
+                                            if (ertek == "")
+                                            {
+                                                Console.WriteLine("Nem adtál meg értéket!");
+                                                continue;
+                                            }
+                                            if (ertek.ToLower() == "piros") ertek = "red";
+                                            if (ertek.ToLower() == "kék") ertek = "blue";
+                                            if (ertek.ToLower() == "zöld") ertek = "green";
+                                            if (ertek.ToLower() == "sárga") ertek = "yellow";
+                                            if (ertek.ToLower() == "fekete") ertek = "black";
+                                            if (ertek.ToLower() == "fehér") ertek = "white";
+
+                                            if (tulajdonsag == "font-size" && int.TryParse(ertek, out _))
+                                            {
+                                                ertek += "px";
+                                            }
+
+                                            File.AppendAllText($"{fajlNev2}.css", $"{selector} {{ {tulajdonsag}: {ertek}; }}\n");
+                                            Console.WriteLine("A beállítás elmentve!");
+                                        }
+
+                                        // saját osztály
+                                        if (gomb5 == "2")
+                                        {
+                                            string[] htmlSorok = File.ReadAllLines(htmlFajl);
+                                            int db = 0;
+                                            for (int k = 0; k < htmlSorok.Length; k++)
+                                            {
+                                                if (htmlSorok[k].StartsWith("<p>"))
+                                                {
+                                                    db++;
+                                                    Console.WriteLine($"{db}. {htmlSorok[k]}");
+                                                }
+                                            }
+
+                                            if (db == 0)
+                                            {
+                                                Console.WriteLine("Nincs olyan bekezdés, amihez hozzá lehetne rendelni az osztályt.");
+                                            }
+                                            else
+                                            {
+                                                Console.Write("Melyik bekezdéshez rendeljük hozzá? (sorszám, 'mind' az összeshez, üresen hagyod: egyikhez sem): ");
+                                                string kivalasztott = Console.ReadLine().Trim().ToLower();
+                                                if (kivalasztott != "")
+                                                {
+                                                    int sz = 0;
+                                                    bool talalt = false;
+                                                    for (int k = 0; k < htmlSorok.Length; k++)
+                                                    {
+                                                        if (htmlSorok[k].StartsWith("<p>"))
+                                                        {
+                                                            sz++;
+                                                            if (kivalasztott == "mind" || kivalasztott == sz.ToString())
+                                                            {
+                                                                htmlSorok[k] = $"<p class=\"{osztalyNev}\">" + htmlSorok[k].Substring(3);
+                                                                talalt = true;
+                                                            }
+                                                        }
+                                                    }
+                                                    if (talalt)
+                                                    {
+                                                        File.WriteAllLines(htmlFajl, htmlSorok);
+                                                        Console.WriteLine("Az osztály hozzárendelve!");
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("Ilyen sorszámú bekezdés nincs.");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else if (gomb5 == "3")
+                                    {
+                                        break; // vissza a html/css menübe
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Invalid gomb");
+                                    }
+                                }
+                            }
+                        }
+                        else if (gomb2 == "3")
+                        {
+                            break; // vissza a fájlválasztó menübe
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid gomb");
+                        }
                     }
-                    break;
                 }
             }
-        }
-        if (gomb2 == "2")
-        {
-            if (!szovegList[0].Contains("<p>"))
+            else if (gomb3 == "2")
             {
-                Console.WriteLine("Előszőr hozz létre bekezdéseket!");
+                string[] osszesFajlnevFile = File.ReadAllLines("osszesfajlnev.txt");
+                foreach (string s in osszesFajlnevFile)
+                {
+                    if (s.Trim() != "")
+                    {
+                        Console.WriteLine(s);
+                    }
+                }
             }
-            else if (!szovegList[0].Contains("DOCTYPE HTML"))
+            else if (gomb3 == "3")
             {
-                Console.WriteLine("Előszőr hozz létre HTML-deklarációt");
+                break; // vissza a főmenübe
             }
             else
             {
-                if (!File.Exists($"{fajlNevBeal}.css"))
-                {
-                    File.WriteAllText($"{fajlNevBeal}.css", "");
-                }
-                Console.WriteLine("1. gomb: Létező HTML elem formázása");
-                Console.WriteLine("2. gomb: Új, saját osztály (class) létrehozása");
-                Console.WriteLine("3. gomb: kilépés");
-                Console.Write("Kérem adja meg hanyas gomb: ");
-                string gomb5 = Console.ReadLine();
-                if (gomb5 == "1")
-                {
-                    Console.WriteLine("HTML elemek: body (A teljes oldal), p (Bekezdések)");
-                    string cssBealNev = Console.ReadLine();
-                    Console.WriteLine("Milyen beállítást szeretnél megadni?");
-                    foreach (string i in cssbeallitasopciok)
-                    {
-                        string[] sor = i.Split(';');
-                        Console.Write(sor[0]);
-                    }
-                }
+                Console.WriteLine("Invalid gomb");
             }
         }
-        if (gomb2 == "3")
-        {
-            break;
-        }
+    }
+    else if (gomb1 == "3")
+    {
+        break; // kilépés a programból
+    }
+    else
+    {
+        Console.WriteLine("Invalid gomb");
     }
 }
+

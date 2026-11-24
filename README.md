@@ -17,6 +17,9 @@
 - 2.gomb: Létező fájl módosítása
 - 3.gomb: Kilépés
 
+> [!WARNING]
+> Ha a menüben 1 és 3 közöttitől eltérő gombot ad meg a user, a program figyelmeztetni fog, hogy nincs olyan gomb, és újra megjeleníti a menüt!
+
 **_Lépések:_**
 
 1. Bekér egy szöveget

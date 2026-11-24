@@ -1,4 +1,6 @@
 ﻿//ékezetes betűk megoldása:
+using System.Text.Unicode;
+
 System.Text.Encoding.RegisterProvider(
     System.Text.CodePagesEncodingProvider.Instance
 );
@@ -75,25 +77,17 @@ while (true)
         bool megszakitva = false;
         while (true)
         {
-            Console.WriteLine("Adj meg egy fájlnevet (kiterjesztés nélkül)\nKilépéshez hagyd üresen: ");
-            string fajlNev = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(fajlNev))
+            string szoveg1 = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(szoveg1))
             {
                 megszakitva = true;
                 break;
             }
-            if (!File.Exists($"{fajlNev}.html"))
-            {
-                File.WriteAllText($"{fajlNev}.html", "");
-                File.AppendAllText("osszesfajlnev.txt", $"{fajlNev}.html\n");
-
-                beallitasok[2] = fajlNev;
-                File.WriteAllLines("beallitasok.txt", beallitasok); // Egyszerűbb, mint ciklussal hozzáfűzni
-                break;
-            }
             else
             {
-                Console.WriteLine("Ez a fájl már létezik!");
+                File.WriteAllText($"{fajlNevBeal1}.html", "");
+                File.AppendAllText("osszesfajlnev.txt", $"{fajlNevBeal1}.html\n");
+                File.WriteAllLines("beallitasok.txt", beallitasok); // Egyszerűbb, mint ciklussal hozzáfűzni
             }
         }
 
@@ -174,6 +168,12 @@ while (true)
             string gomb4 = Console.ReadLine();
             while (true)
             {
+                if (gomb4 == "1")
+                {
+                    Console.WriteLine("Add meg az oldal címét: ");
+                    string oldalCim=Console.ReadLine();
+                    File.WriteAllText($"{fajlNevBeal}.html", $"<!DOCTYPE html>\n<html lang=\"hu\">\n<head>\n    <meta charset=\"UTF - 8\">\n    <meta name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\">\n    <link rel=\"stylesheet\" href={fajlNevBeal}.css>\n    <title>{oldalCim}</title>\n</head>\n<body>\n    {szoveg}\n</body>\n</html>\n");
+                }
                 if (gomb4 == "2")
                 {
                     File.WriteAllText($"{fajlNevBeal}.html", "");

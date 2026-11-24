@@ -6,6 +6,7 @@
 - Hogyan kell használni
 - Mik az igényei a programnak
 - Miért jó ez az alkalmazás
+- Továbbfejlesztési lehetőségek, táblázatok és felsorolások
 - Példa a használatra
 
 ##  Weboldal készító alkalmazás
@@ -41,3 +42,4 @@
 > [!NOTE]
 > A hármas gomb kiléptett! 
 - Három txt fájl létezik a program elindítása után: osszesfajlnev.txt, beallitasok.txt és cssbeallopciok.txt
+

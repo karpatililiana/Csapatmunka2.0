@@ -17,8 +17,8 @@
 - 2.gomb: Létező fájl módosítása
 - 3.gomb: Kilépés
 
-> [!WARNING]
-> Ha a menüben 1 és 3 közöttitől eltérő gombot ad meg a user, a program figyelmeztetni fog, hogy nincs olyan gomb, és újra megjeleníti a menüt!
+> [!NOTE]
+> A hármas gomb kiléptett! 
 
 ## **_Fájlok_**
 
@@ -50,8 +50,6 @@
    - Kettes új, saját osztályt (class) hoz létre
 - Ha helytelen adatot ad meg akkor újra bekéri az adott adatot
 - Mindig ellenőrzi hogy létezik e az adott fájl
-> [!NOTE]
-> A hármas gomb kiléptett! 
 
 ## Hibakezelés
 - Érvénytelen input: ha a user helytelen adatot ad meg, a program jelzi a hibár, majd újra bekéri az adatot (nem fog leállni a program)

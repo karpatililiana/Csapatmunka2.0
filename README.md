@@ -18,7 +18,7 @@
 - 3.gomb: Kilépés
 
 > [!NOTE]
-> A hármas gomb kiléptett! 
+> A hármas gomb mindig kiléptett! 
 
 ## **_Fájlok_**
 

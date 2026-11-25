@@ -39,9 +39,13 @@ while (true)
     }
 
     // menü gombok
-    Console.WriteLine("1. gomb: szöveg leírása");
-    Console.WriteLine("2. gomb: létező fájl módosítása");
-    Console.WriteLine("3. gomb: kilépés");
+    Console.WriteLine("========================================");
+    Console.WriteLine("       WEBOLDAL KÉSZÍTŐ");
+    Console.WriteLine("========================================");
+    Console.WriteLine(" [1] Új weboldal készítése");
+    Console.WriteLine(" [2] Meglévő fájl módosítása");
+    Console.WriteLine(" [3] Kilépés");
+    Console.WriteLine("----------------------------------------");
     Console.Write("Kérem adja meg hanyas gomb: ");
     string gomb1 = Console.ReadLine();
 
@@ -95,9 +99,11 @@ while (true)
         // fájlválasztó menü
         while (true)
         {
-            Console.WriteLine("1. gomb: Add meg a fájl nevét");
-            Console.WriteLine("2. gomb: Tekintsd meg a létező fájlneveket");
-            Console.WriteLine("3. gomb: Kilépés");
+            Console.WriteLine("========================================");
+            Console.WriteLine(" [1] Add meg a fájl nevét");
+            Console.WriteLine(" [2] Tekintsd meg a létező fájlneveket");
+            Console.WriteLine(" [3] Kilépés");
+            Console.WriteLine("----------------------------------------");
             Console.Write("Kérem adja meg hanyas gomb: ");
             string gomb3 = Console.ReadLine();
             if (gomb3 == "1")
@@ -123,9 +129,11 @@ while (true)
                     // SZERKESZTŐ MENÜ (html / css)
                     while (true)
                     {
-                        Console.WriteLine("1. gomb: html");
-                        Console.WriteLine("2. gomb: css");
-                        Console.WriteLine("3. gomb: kilépés");
+                        Console.WriteLine("========================================");
+                        Console.WriteLine(" [1] html");
+                        Console.WriteLine(" [2] css");
+                        Console.WriteLine(" [3] Kilépés");
+                        Console.WriteLine("----------------------------------------");
                         Console.Write("Kérem adja meg hanyas gomb: ");
                         string gomb2 = Console.ReadLine();
 
@@ -134,9 +142,11 @@ while (true)
                         {
                             while (true)
                             {
-                                Console.WriteLine("1. gomb: HTML-deklaráció hozzáadása");
-                                Console.WriteLine("2. gomb: Bekezdések létrehozása (<p>, </p>)");
-                                Console.WriteLine("3. gomb: kilépés");
+                                Console.WriteLine("========================================");
+                                Console.WriteLine(" [1] HTML-deklaráció hozzáadása");
+                                Console.WriteLine(" [2] Bekezdések létrehozása (<p>, </p>)");
+                                Console.WriteLine(" [3] Kilépés");
+                                Console.WriteLine("----------------------------------------");
                                 Console.Write("Kérem adja meg hanyas gomb: ");
                                 string gomb4 = Console.ReadLine();
 
@@ -236,9 +246,11 @@ while (true)
 
                                 while (true)
                                 {
-                                    Console.WriteLine("1. gomb: Létező HTML elem formázása");
-                                    Console.WriteLine("2. gomb: Új, saját osztály (class) létrehozása");
-                                    Console.WriteLine("3. gomb: kilépés");
+                                    Console.WriteLine("========================================");
+                                    Console.WriteLine(" [1] Létező HTML elem formázása");
+                                    Console.WriteLine(" [2] Új, saját osztály (class) létrehozása)");
+                                    Console.WriteLine(" [3] Kilépés");
+                                    Console.WriteLine("----------------------------------------");
                                     Console.Write("Kérem adja meg hanyas gomb: ");
                                     string gomb5 = Console.ReadLine();
 
@@ -453,4 +465,3 @@ while (true)
         Console.WriteLine("Invalid gomb");
     }
 }
-

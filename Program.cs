@@ -31,7 +31,6 @@ while (true)
     foreach (string i in beallitasokSzoveg)
     {
         beallitasok.Add(i);
-        Console.WriteLine(i);
     }
     while (beallitasok.Count < 3)
     {

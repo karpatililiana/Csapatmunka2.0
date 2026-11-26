@@ -55,10 +55,10 @@ A menüpontok kiválasztása a kívánt opció számának begépelésével és a
 >>>A beírt összes sort HTML-ben bekezdéssé formázza.
 >>
 >CSS
->>
->> [!NOTE]
->> Ha nincs HTML-deklaráció vagy a bekezdés, akkor a program hibát jelez és visszadob a menübe.
->>
+
+> [!NOTE]
+> Ha nincs HTML-deklaráció vagy a bekezdés, akkor a program hibát jelez és visszadob a menübe.
+
 >> Létező HTML-elem formázása
 >>
 >>>Létező HTML-elemet formáz, pl body, p.
@@ -84,7 +84,7 @@ A menüpontok kiválasztása a kívánt opció számának begépelésével és a
 >Egyéb
 >>
 >>A felhasználó bármilyen általa ismert beállítást beállithat.
->
+
 > [!NOTE]
 > Ha az előző menüben saját osztályt hoztunk létre, akkor a program megkér hogy kiválasszuk a bekezdést, amelyre be szeretnénk állítani a beállításokat.
 

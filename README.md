@@ -1,13 +1,5 @@
-# Csapatmunka2.0
+# Konzolos Weboldalszerkesztő
 *Csoporttagok:* Kárpáti Liliána, Piri Nóra, Tóth Lili Napsugár
-
-## PPT (tartalma):
-- Miért készült el ez a program (mi volt a 'probléma')
-- Hogyan kell használni
-- Mik az igényei a programnak
-- Miért jó ez az alkalmazás
-- Továbbfejlesztési lehetőségek, táblázatok és felsorolások
-- Példa a használatra
 
 #  Weboldal készító alkalmazás
 
@@ -18,13 +10,35 @@
 - 3.gomb: Kilépés
 
 > [!NOTE]
-> A hármas gomb mindig kiléptett! 
+> A kilépő gomb mindig jelezve van! 
 
-## **_Fájlok_**
-
+## **_A program fájljai_**
+- *Program.cs*: A program kódja
 - *osszesfajlnev.txt*: nyilvántartja a létrehozott HTML fájlok nevét
 - *beallitasok.txt*: tárolja az aktuálisan szerkesztett vagy használt fájl nevét
 - *cssbeallopciok.txt*: konfigurácios fájl a támogatott css tulajdonságokról
+
+## **_Lépések_**
+
+### Az első menü
+
+- szöveg leírása
+> Kér egy fájlnevet
+> Ha a fájl még nem létezik, akkor elkészíti, különben addig kér új fájlnevet, ameddig egyedit nem ad meg a felhasználó
+> Ezután a fájlt elkészíti, és a felhasználótól bekéri a szöveget bekezdésenként
+- létező fájl módosítása
+
+> ### A második menü
+>
+>További menüt nyit meg:
+>- Add meg a fájl nevét
+>> Bekér egy fájlnevet, ha nem létezik akkor visszadob a menübe
+>- Tekintsd meg a létező fájlneveket
+>>Kiírja az össze slétező fájl nevét
+>
+
+###
+
 
 ## **_Lépések:_**
 ### 1.gomb: fájl létrehozása, szöveges leírás

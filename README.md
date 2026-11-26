@@ -5,65 +5,90 @@
 
 ## **_Menü gombok:_**
 
-- 1.gomb: Szöveg leírása
-- 2.gomb: Létező fájl módosítása
-- 3.gomb: Kilépés
-
+A menüpontok kiválasztása a kívánt opció számának begépelésével és az enter lenyomásával történik.
 > [!NOTE]
-> A kilépő gomb mindig jelezve van! 
+> A kilépő gomb a programban mindig jelezve van! 
 
 ## **_A program fájljai_**
-- *Program.cs*: A program kódja
-- *osszesfajlnev.txt*: nyilvántartja a létrehozott HTML fájlok nevét
-- *beallitasok.txt*: tárolja az aktuálisan szerkesztett vagy használt fájl nevét
-- *cssbeallopciok.txt*: konfigurácios fájl a támogatott css tulajdonságokról
+- *Program.cs*: A program kódja.
+- *osszesfajlnev.txt*: nyilvántartja a létrehozott HTML fájlok nevét.
+- *beallitasok.txt*: tárolja az aktuálisan szerkesztett vagy használt fájl nevét.
+- *cssbeallopciok.txt*: konfigurácios fájl a támogatott css tulajdonságokról.
 
 ## **_Lépések_**
 
-### Az első menü
-
-- szöveg leírása
-> Kér egy fájlnevet
-> Ha a fájl még nem létezik, akkor elkészíti, különben addig kér új fájlnevet, ameddig egyedit nem ad meg a felhasználó
-> Ezután a fájlt elkészíti, és a felhasználótól bekéri a szöveget bekezdésenként
-- létező fájl módosítása
-
+>### Az első menü
+>
+> Szöveg leírása
+>> Kér egy fájlnevet
+>>
+>> Ha a fájl még nem létezik, akkor elkészíti, különben addig kér új fájlnevet, ameddig egyedit nem ad meg a felhasználó.
+>>
+>>  Ezután a fájlt elkészíti, és a felhasználótól bekéri a szöveget bekezdésenként.
+>>
+>>Az utolsó bekezdés után a felhasználó egy üres bekezdést ad, és utána a program visszadob a menübe.
+>
+> Létező fájl módosítása
+>
+>>A második menüt jeleníti meg
+>
 > ### A második menü
 >
->További menüt nyit meg:
->- Add meg a fájl nevét
->> Bekér egy fájlnevet, ha nem létezik akkor visszadob a menübe
->- Tekintsd meg a létező fájlneveket
->>Kiírja az össze slétező fájl nevét
+> Add meg a fájl nevét
 >
+>> Bekér egy fájlnevet, ha nem létezik akkor visszadob a menübe
+>
+> Tekintsd meg a létező fájlneveket
+>
+>>Kiírja az összes létező fájl nevét, utána visszadob a menübe
+>
+> ### A harmadik menü
+> HTML
+>>A HTML menüponton belül 2 opció van:
+>>
+>>HTML-deklaráció hozzáadása
+>>>
+>>>A fájl elejére beilleszti a HTML-deklarációt miután a felhasználótól bekéri a lap címét.
+>>>
+>>Bekezdések létrehozása
+>>>
+>>>A beírt összes sort HTML-ben bekezdéssé formázza.
+>>
+>CSS
+>>
+>> [!NOTE]
+>> Ha nincs HTML-deklaráció vagy a bekezdés, akkor a program hibát jelez és visszadob a menübe.
+>>
+>> Létező HTML-elem formázása
+>>
+>>>Létező HTML-elemet formáz, pl body, p.
+>>
+>>Új, saját osztály (class) létrehozása
+>>>
+>>>Saját osztályt hoz létre szövegrészlet formázására. Az osztály neve tetszőleges.
+>
+>### A negyedik menü
+>
+>Szöveg szín
+>>
+>>Bekér egy színt, és az adott szöveget beszínezi.
+>>
+>Szöveg méret
+>>
+>>Bekér egy méretet, és az adott szöveget átméretezi.
+>>
+>Háttérszín
+>>
+>>Bekér egy színt, és ahátteret beszínezi.
+>>
+>Egyéb
+>>
+>>A felhasználó bármilyen általa ismert beállítást beállithat.
+>
+> [!NOTE]
+> Ha az előző menüben saját osztályt hoztunk létre, akkor a program megkér hogy kiválasszuk a bekezdést, amelyre be szeretnénk állítani a beállításokat.
 
-###
 
-
-## **_Lépések:_**
-### 1.gomb: fájl létrehozása, szöveges leírás
-1. Bekér egy szöveget
-2. Felsorolja a lehetőségeket
-3. Meg lehet adni a html és css beállításokat
-
-### 2.gomb: létező fájl módosítása
-- Ha az első gombot választja akkor a megadott fájlnévv .html és *beallitasok.txt* fájlokba menti
-- 2.gomb kiad három opciót: fájl név megadása, meg lehet tekinteni a létező fájl neveit, kilépés
-   - Az 1-es opció elmenti a megadott fájlnév .html néven
-   - Az 2-es megnyitja az *osszesfajlnev.txt* nevű szöveges fájl
-
-### Részletek (html, css) 
-- Css beállítás opciók a *beallitas.txt* fájlba található
-- 3 opció van html és css beállítások meg a kilépés
-- Az egyes opció ami html néven van ki ad 3 gombot
-   - Az egyes gomb html deklarációt hozzáad
-   - Kettes bekezdéseket hoz létre a szövegre (p)
-- A kettes, css opció  szintúgy 3 gombot ad ki
-   - Elöszőr megnézi, hogy létezik e a .css fájl, ha igen abba fog írni
-   - Egyes gomb a létező .html fájl elemét formázza
-   - Kettes új, saját osztályt (class) hoz létre
-- Ha helytelen adatot ad meg akkor újra bekéri az adott adatot
-- Mindig ellenőrzi hogy létezik e az adott fájl
 
 ## Hibakezelés
 - Érvénytelen input: ha a user helytelen adatot ad meg, a program jelzi a hibár, majd újra bekéri az adatot (nem fog leállni a program)

@@ -230,11 +230,15 @@ while (true)
                             string aktualis = File.ReadAllText(htmlFajl);
                             if (!aktualis.Contains("<!DOCTYPE html>"))
                             {
+                                Console.WriteLine("========================================");
                                 Console.WriteLine("Előbb hozz létre HTML-deklarációt! (html => 1. gomb)");
+                                Console.WriteLine("----------------------------------------");
                             }
                             else if (!aktualis.Contains("<p>"))
                             {
+                                Console.WriteLine("========================================");
                                 Console.WriteLine("Előbb hozz létre bekezdéseket! (html => 2. gomb)");
+                                Console.WriteLine("----------------------------------------");
                             }
                             else
                             {
@@ -299,7 +303,7 @@ while (true)
                                                 Console.WriteLine($"{k + 1}. gomb: {sor[0]}");
                                             }
                                             Console.WriteLine($"{cssbeallitasopciok.Count + 1}. gomb: Egyéb (saját CSS tulajdonság megadása)");
-                                            Console.WriteLine("0. gomb: kész");
+                                            Console.WriteLine("0. gomb: Kész");
                                             Console.Write("Kérem adja meg hanyas gomb: ");
                                             string valasztas = Console.ReadLine();
 
